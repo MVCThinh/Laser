@@ -1,0 +1,787 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>rs2DAlign</name>
+    </assembly>
+    <members>
+        <member name="T:rs2DAlign.cs2DAlign">
+            <summary>
+            2.3.4 점 Align/Calibration 사용 Class
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.ptXY">
+            <summary>
+            cs2DAlign에서 사용 2Point Structure
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXY.X">
+            <summary>
+            X Point
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXY.Y">
+            <summary>
+            Y Point
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.ptXXYY">
+            <summary>
+            cs2DAlign에서 사용 4Point Structure
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXXYY.X1">
+            <summary>
+            X1
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXXYY.X2">
+            <summary>
+            X2
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXXYY.Y1">
+            <summary>
+            Y1
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXXYY.Y2">
+            <summary>
+            Y2
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.ptOffset">
+            <summary>
+            Align용 Offset 설정 Structure
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptOffset.X1">
+            <summary>
+            X1 Offset
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptOffset.X2">
+            <summary>
+            X2 Offset
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptOffset.Y1">
+            <summary>
+            Y1 Offset
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptOffset.Y2">
+            <summary>
+            Y2 Offset
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptOffset.T">
+            <summary>
+            Theta Offset
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.ptXYT">
+            <summary>
+            cs2DAlign에서 사용 3Point Structure
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXYT.X">
+            <summary>
+            X
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXYT.Y">
+            <summary>
+            Y
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptXYT.T">
+            <summary>
+            T
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.eAlignKind">
+            <summary>
+            Align 방식 Enum
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eAlignKind.Center">
+            <summary>
+            Center 기준 Align
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eAlignKind.Left">
+            <summary>
+            좌측 Point 기준 Align
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eAlignKind.Right">
+            <summary>
+            우측 Point 기준 Align
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.eDistCalcKind">
+            <summary>
+            거리 계산 방식 설정 Enum (default degree)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eDistCalcKind.degree">
+            <summary>
+            거리 계산 시 각도 우선 계산
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eDistCalcKind.gradient">
+            <summary>
+            거리 계산 시 기울기 이용 계산
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.eThetaCalc">
+            <summary>
+            Align Thetar값 구하기 방식 Enum
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eThetaCalc.X1_X2">
+            <summary>
+            가로(X) 방향 두 Point 이용 Theta 구함
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eThetaCalc.Y1_Y3">
+            <summary>
+            세로(Y) 방향 두 Point 이용 Theta 구함 (좌측)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eThetaCalc.Y2_Y3">
+            <summary>
+            세로(Y) 방향 두 Point 이용 Theta 구함 (우측)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.eThetaCalc.Y1_Y3_n_Y2_Y4">
+            <summary>
+            세로(Y) 방향 4 Point 이용 Theta 구함 (좌,우측)
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.stAlign">
+            <summary>
+            Align 계산에 필요한 Parameter 설정 Structure
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Ydirection">
+            <summary>
+            세로(Y) 방향 카메라 구성 시 사용
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Treverse">
+            <summary>
+            계산 식에서 Theta 값 반전 사용 유무
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Kind">
+            <summary>
+            Align 정렬 방법 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.OtherCalUse">
+            <summary>
+            측정 Vision과 Align 적용 Vision 다른 경우 (측정 Vision이 Calibration 불가한 경우 사용)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.OtherCalCamNo1">
+            <summary>
+            otherCal 사용을 위한 Cal1 No 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.OtherCalCamNo2">
+            <summary>
+            otherCal 사용을 위한 Cal2 No 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.OtherMotionUse">
+            <summary>
+            Motion Cal 가능한 위치에서 Capture후에 Algin은 다른 곳 적용할 경우
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Toffset">
+            <summary>
+            측정 위치와 Align 적용 위치의 Theta가 다를 경우 적용 (적용위치 - 측정위치) deg     
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.sourceTheta">
+            <summary>
+            기준 Theta 값 설정 (Theta 값을 별도로 구할 경우 ex. Mark 각도 or Line 각도 등
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.targetTheta">
+            <summary>
+            적용 Theta 값 설정 (Theta 값을 별도로 구할 경우 ex. Mark 각도 or Line 각도 등
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.AdjustUse">
+            <summary>
+            미사용
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.bSDT">
+            <summary>
+            미사용
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point3Align">
+            <summary>
+            3점 Align 사용 유무
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point3sourcePixel">
+            <summary>
+            3점 Align 시 추가 Point 좌표 (source)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point3targetPixel">
+            <summary>
+            3점 Align 시 추가 Point 좌표 (target)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point3CalNo">
+            <summary>
+            3점 Align 시 Cal No 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point4Align">
+            <summary>
+            4점 Align 사용 유무
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point4sourcePixel">
+            <summary>
+            4점 Align 시 추가 Point 좌표 (source)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point4targetPixel">
+            <summary>
+            4점 Align 시 추가 Point 좌표 (target)
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.Point4CalNo">
+            <summary>
+            4점 Align 시 Cal No 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.distCalKind">
+            <summary>
+            거리 계산 방식 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.bendingAlign">
+            <summary>
+            Bending Align 일 경우 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.thetaCalc">
+            <summary>
+            3,4 점 Align Theta 구하는 방식 설정
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.stAlign.motionMoveOffset">
+            <summary>
+            Camera가 이동하여 Align 하는 경우의 모션 축 이동량
+            </summary>
+        </member>
+        <member name="T:rs2DAlign.cs2DAlign.ptAlignResult">
+            <summary>
+            Align 계산 후 결과 Structure
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.X">
+            <summary>
+            이동량 X
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.Y">
+            <summary>
+            이동량 Y
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.T">
+            <summary>
+            이동량 T
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtSourceX1">
+            <summary>
+            Source Robot Position X1
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtSourceY1">
+            <summary>
+            Source Robot Position Y1
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtSourceX2">
+            <summary>
+            Source Robot Position X2
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtSourceY2">
+            <summary>
+            Source Robot Position Y2
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtTargetX1">
+            <summary>
+            Target Robot Position X1
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtTargetY1">
+            <summary>
+            Target Robot Position Y1
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtTargetX2">
+            <summary>
+            Target Robot Position X2
+            </summary>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.ptAlignResult.rtTargetY2">
+            <summary>
+            Target Robot Position Y2
+            </summary>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.Init(System.String,System.String)">
+            <summary>
+            cs2DAlign 초기화 함수
+            </summary>
+            <param name="strPath">Calibration File 저장 경로 설정</param>
+            <param name="AdjustFilePath">AdjustFile 저장 경로 설정</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setUVRW(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            UVRW Align 사용할 경우 UVRW H/W 사양 설정 함수
+            </summary>
+            <param name="iCalNO">사용할 Calibration NO</param>
+            <param name="X1ShaftAngle">X1 Angle 설정</param>
+            <param name="X2ShaftAngle">X2 Angle 설정</param>
+            <param name="Y1ShaftAngle">Y1 Angle 설정</param>
+            <param name="Y2ShaftAngle">Y2 Angle 설정</param>
+            <param name="Radius">UVRW 축 간 반지름 값 설정</param>
+            <param name="XMotorRev">X1,X2 Motor 방향이 다를 경우 True</param>
+            <param name="YMotorRev">Y1,Y2 Motor 방향이 다를 경우 True</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setRobotPos(System.Double,System.Double,rs2DAlign.cs2DAlign.ptXY[]@)">
+            <summary>
+            Calibration 시의 Robot 이동 Poition 설정 및 반환, Pitch에 따른 Robot 좌표를 고정해서 사용 함. (헷갈리지 않도록)
+            </summary>
+            <param name="calPitchX">X방향 Pitch 설정</param>
+            <param name="calPitchY">Y방향 Pitch 설정</param>
+            <param name="RToffset">Robot 이동량 반환 값</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setAdjustRobotPos(System.Int32,System.Int32,System.Double,System.Double,rs2DAlign.cs2DAlign.ptXY[]@)">
+            <summary>
+            미사용
+            </summary>
+            <param name="XCnt"></param>
+            <param name="YCnt"></param>
+            <param name="calPitchX"></param>
+            <param name="calPitchY"></param>
+            <param name="RToffset"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getCal_UVRW_XY_Pos(System.Int32,System.Double,System.Double,rs2DAlign.cs2DAlign.ptXXYY[]@)">
+            <summary>
+            Calibration 시의 UVRW 이동 Poition 설정 및 반환, Pitch에 따른 UVRW 좌표를 고정해서 사용 함. (헷갈리지 않도록)
+            </summary>
+            <param name="iCalNO">UVRW 적용할 Calibration NO</param>
+            <param name="calPitchX">X방향 Pitch 설정</param>
+            <param name="calPitchY">Y방향 Pitch 설정</param>
+            <param name="uvrwOffset">uvrw 이동량 반환</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getCal_UVRW_fix_Pos(System.Int32,System.Double,System.Double,rs2DAlign.cs2DAlign.ptXXYY[]@)">
+            <summary>
+            Theta Cal 시 UVRW 이동량 반환하는 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="firstT">첫 이동 각도 (degree)</param>
+            <param name="secondT">두번째 이동 각도(degree)</param>
+            <param name="uvrwOffset">UVRW 값으로 이동량 반환</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getRobotPos(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY@)">
+            <summary>
+            Pixel 좌표 값을 Robot 좌표값으로 반환 하는 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="pixelPos">Pixel Point</param>
+            <param name="robotPos">Robot 좌표 변경 값</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getXYTtoUVRW(System.Int32,rs2DAlign.cs2DAlign.ptXYT,System.Boolean,System.Boolean)">
+            <summary>
+            XYT Align 이동량을 UVRW 이동량으로 변환 하는 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="xyt">XYT 이동량</param>
+            <param name="retry">Align Retry 시 True</param>
+            <param name="Xreverse">X 방향 값 반전</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setCamCalibration(System.Int32,System.Collections.Generic.List{rs2DAlign.cs2DAlign.ptXY},rs2DAlign.cs2DAlign.ptXY)">
+            <summary>
+            X,Y Calibration 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="p_pxPos">Cal 적용할 Pixel Point List</param>
+            <param name="PixelCount">Image Pixel 개수 설정 (전체)</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.copyCalData(System.Int32,System.Int32)">
+            <summary>
+            Calibration Data Copy 함수
+            </summary>
+            <param name="fromCalNO">From</param>
+            <param name="toCalNO">To</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setAdjustPixelPos(System.Int32,rs2DAlign.cs2DAlign.ptXY[],System.Int32,System.Int32)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO"></param>
+            <param name="pixelPos"></param>
+            <param name="xCnt"></param>
+            <param name="yCnt"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setCenterOfRotation(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double,System.Double,rs2DAlign.cs2DAlign.ptXY)">
+            <summary>
+            Theta Calibration 실행 함수 (회전 중심 구하기)
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="p_firstPoint">첫 Theta Pixel Point </param>
+            <param name="p_secondPoint">두번째 Theta Pixel Point</param>
+            <param name="firstTheta">첫 Theta Degree</param>
+            <param name="secondTheta">두번째 Theta Degree</param>
+            <param name="fixOffset">계산된 Fixposiont에 추가할 Offset 설정</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getResolution(System.Int32,rs2DAlign.cs2DAlign.ptXY@,rs2DAlign.cs2DAlign.ptXY@,System.Boolean)">
+            <summary>
+            카메라 Rosolution 값 반환 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="resolution">Resolution X,Y</param>
+            <param name="pixelCnt">Image Pixel 개수</param>
+            <param name="bsign">절대값 반환 여부, false = 절대 값 반환</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setCalTeachPos(System.Int32,System.Double,System.Double,System.Double)">
+            <summary>
+            Calibration Motor Position 설정 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="xPos">X Position</param>
+            <param name="yPos">Y Position</param>
+            <param name="tPos">T Position</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getCalTeachPos(System.Int32,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Calibration Motor Position 반환 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="xPos">X Position</param>
+            <param name="yPos">Y Position</param>
+            <param name="tPos">T Position</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setCurentPos(System.Int32,System.Double,System.Double,System.Double)">
+            <summary>
+            현재 Motor Position 설정 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="xPos"></param>
+            <param name="yPos"></param>
+            <param name="tPos"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setAlignParam(System.Int32,rs2DAlign.cs2DAlign.stAlign)">
+            <summary>
+            Align 시 사용할 Parameter 설정 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="setParam">적용할 Parameter Structure</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getAlign(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptOffset,rs2DAlign.cs2DAlign.ptXXYY@,System.Boolean,System.Boolean)">
+            <summary>
+            Align 실행 함수, Source -> Target으로 이동하는 값을 구함.
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="sourcePixel1">Source1의 Pixel Point</param>
+            <param name="targetPixel1">Targer1의 Pixel Point</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="sourcePixel2">Source2의 Pixel Point</param>
+            <param name="targetPixel2">Targer2의 Pixel Point</param>
+            <param name="offset">Align 시 적용할 Offset (mm, degre)</param>
+            <param name="dist">Align 시 계산 된 거리 값 반환</param>
+            <param name="retry">Retry 계산일 경우 True</param>
+            <param name="getOffset">Align 역산 계산 값을 구할 경우 True</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setCalibration_notUseCal_old(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXXYY,System.Boolean)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO1"></param>
+            <param name="pixelRefPoint1"></param>
+            <param name="pixelTargetPoint1"></param>
+            <param name="pixelCnt1"></param>
+            <param name="markTomarkX"></param>
+            <param name="iCalNO2"></param>
+            <param name="pixelRefPoint2"></param>
+            <param name="pixelTargetPoint2"></param>
+            <param name="pixelCnt2"></param>
+            <param name="refDist"></param>
+            <param name="bSave"></param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setCalibration_notUseCal(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXXYY,System.Boolean)">
+            <summary>
+            Motion Calibration을 할 수 없는 카메라에 대한 Calibration 
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="pixelRefPoint1">기준 좌표1 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint1">Target 좌표1 Pixel 값</param>
+            <param name="pixelCnt1">Image Pixel Count</param>
+            <param name="markTomarkX">기준 좌표 간 거리 (mm)</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelRefPoint2">기준 좌표2 Pixel 값</param>
+            <param name="pixelTargetPoint2">Target 좌표2 Pixel 값</param>
+            <param name="pixelCnt2">Image Pixel Count</param>
+            <param name="refDist">측정값을 알고 있는 거리 Set</param>
+            <param name="bSave">결과 값 저장 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setResolution(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY)">
+            <summary>
+            Camera Resolution 값 강제 Set 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="resolution">Set 할 Resolution 값 (mm)</param>
+            <param name="pixelCnt">Set 할 Image Count</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setThetaScale(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXXYY,System.Boolean)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="pixelRefPoint1">기준 좌표1 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint1">Target 좌표1 Pixel 값</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelRefPoint2">기준 좌표2 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint2">Target 좌표2 Pixel 값</param>
+            <param name="referenceDist"></param>
+            <param name="notUseCal"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getDistXY_notUseCal(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXXYY@,System.Double@)">
+            <summary>
+            미사용,  이전방식, Motion Calibration이 불가한 카메라에 대한 거리 구하기 함수
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="pixelRefPoint1">기준 좌표1 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint1">Target 좌표1 Pixel 값</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelRefPoint2">기준 좌표2 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint2">Target 좌표1 Pixel 값</param>
+            <param name="dist">계산된 거리 값</param>
+            <param name="theta">Ref Position 기준 Theta 방향 각도</param>
+        </member>
+        <member name="F:rs2DAlign.cs2DAlign.setRefresolution">
+            <summary>
+            setCalibration_notUseCal 의 기준 Resolution , Camera 사양에 맞게 설정 후에 Calibration Set 해야 정확한 값을 구할 수 있음.
+            </summary>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getDistXY_notUseCal_pixel(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXXYY@,System.Double@)">
+            <summary>
+            Motor Calibration 이 불가한 Camera에서 거리 구하기
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="pixelRefPoint1">기준 좌표1 Pixel 값 (ex. Panel Mark) </param>
+            <param name="pixelTargetPoint1">Target 좌표1 Pixel 값</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelRefPoint2">기준 좌표2 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint2">Target 좌표2 Pixel 값</param>
+            <param name="dist">계산된 거리 값</param>
+            <param name="theta">Ref Position 기준 Theta 방향 각도</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setInspection_CheckerBoard(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO1"></param>
+            <param name="mmCenterPoint"></param>
+            <param name="mmRefPoint"></param>
+            <param name="mmTargetPoint"></param>
+            <param name="distXY"></param>
+            <param name="spec"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setInspection_CheckerBoard(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXXYY,System.Double,System.Double)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO1"></param>
+            <param name="mmCenterPoint1"></param>
+            <param name="mmRefPoint1"></param>
+            <param name="mmTargetPoint1"></param>
+            <param name="iCalNO2"></param>
+            <param name="mmCenterPoint2"></param>
+            <param name="mmRefPoint2"></param>
+            <param name="mmTargetPoint2"></param>
+            <param name="distXY"></param>
+            <param name="markTomark"></param>
+            <param name="spec"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getCenterPoint(System.Int32,System.Double@,System.Double@)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO"></param>
+            <param name="dx"></param>
+            <param name="dy"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getThetaScaleT(System.Int32,System.Double@,System.Boolean)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO"></param>
+            <param name="dT"></param>
+            <param name="notUse"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getDistXY_notUseCal_mm(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double,rs2DAlign.cs2DAlign.ptXXYY@,System.Double@)">
+            <summary>
+            미사용
+            </summary>
+            <param name="iCalNO1"></param>
+            <param name="mmRefPoint1"></param>
+            <param name="mmTargetPoint1"></param>
+            <param name="iCalNO2"></param>
+            <param name="mmRefPoint2"></param>
+            <param name="mmTargetPoint2"></param>
+            <param name="markTomark"></param>
+            <param name="dist"></param>
+            <param name="theta"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getDistXY(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.eDistCalcKind)">
+            <summary>
+            Motor Calibration이 가능한 카메라에서 거리 구하기
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="pixelRefPoint1">기준 좌표1 Pixel 값 (ex. Panel Mark) </param>
+            <param name="pixelTargetPoint1">Target 좌표1 Pixel 값</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelRefPoint2">기준 좌표2 Pixel 값 (ex. Panel Mark) </param>
+            <param name="pixelTargetPoint2">Target 좌표2 Pixel 값</param>
+            <param name="distCalcKind">거리 구하는 방법 설정 default = degree </param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getLength(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double)">
+            <summary>
+            한 Camera 내의 두 점간 거리 구하기
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="pixelPoint1">첫 Point Pixel</param>
+            <param name="pixelPoint2">두번째 Point Pixel</param>
+            <param name="offset">거리 값 계산 Offset</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getLength(System.Int32,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double,System.Boolean)">
+            <summary>
+            두 Camera 내의 두 점간 거리 구하기. (X 방향)
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelPoint1">첫 Point Pixel</param>
+            <param name="pixelPoint2">두번째 Point Pixel</param>
+            <param name="offset">거리 값 계산 Offset</param>
+            <param name="notUseMotorCal">Motor를 이용한 Calibration을 진행 하지 않은 경우 (ex. Inspection등)</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getLength_Y(System.Int32,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Double)">
+            <summary>
+            두 Camera 내의 두 점간 거리 구하기. (Y 방향)
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelPoint1">첫 Point Pixel</param>
+            <param name="pixelPoint2">두번째 Point Pixel</param>
+            <param name="offset">거리 값 계산 Offset</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getScale(System.Int32,System.Double@,System.Double@)">
+            <summary>
+            설정된 Scale 값 반환 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="dX">Scale X</param>
+            <param name="dY">Scale Y</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setScale(System.Int32,System.Double,System.Double)">
+            <summary>
+            Scale 값 설정 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="dX">Scale X</param>
+            <param name="dY">Scale Y</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setScale(System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,System.Int32,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXY,rs2DAlign.cs2DAlign.ptXXYY)">
+            <summary>
+            Scale 설정 함수 
+            </summary>
+            <param name="iCalNO1">적용할 Calibration NO1</param>
+            <param name="pixelRefPoint1">기준 좌표1 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint1">Target 좌표1 Pixel 값</param>
+            <param name="iCalNO2">적용할 Calibration NO2</param>
+            <param name="pixelRefPoint2">기준 좌표2 Pixel 값 (ex. Panel Mark)</param>
+            <param name="pixelTargetPoint2">Target 좌표2 Pixel 값</param>
+            <param name="referenceDist">측정된 거리</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.resetScale(System.Int32)">
+            <summary>
+            Scale 값 초기화 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.traceCreate(System.Int32,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double[]@,System.Double[]@,System.Double[]@)">
+            <summary>
+            궤적 생성 함수
+            </summary>
+            <param name="ipoint">생성할 Point수</param>
+            <param name="dRadiusOfRotation">반지름 값</param>
+            <param name="dLastYOffset">최종 위치 Y Offset</param>
+            <param name="d90OffsetY">90도 지점 Y Offset</param>
+            <param name="d90OffsetZ">90도 지점 Z Offset</param>
+            <param name="d180OffsetY">180도 지점 Y Offset</param>
+            <param name="d180OffsetZ">180도 지점 Z Offset</param>
+            <param name="rdY">궤적 반환 값 Y</param>
+            <param name="rdZ">궤적 반환 값 Z</param>
+            <param name="rdTheta">궤적 반환 값 T</param>
+            <returns></returns>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setFixpos(System.Int32,System.Double,System.Double)">
+            <summary>
+            Fix Position 강제 설정 함수
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="dX">Fix X</param>
+            <param name="dY">Fix Y</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.setFixPos(System.Int32,System.Int32,rs2DAlign.cs2DAlign.ptXY)">
+            <summary>
+            Fix Position 설정 함수....
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO, Resolution은 미리 구해져 있어야 함.</param>
+            <param name="iRefCalNO">참조용 CalNO  -> Calibration 완료 되어 있어야 함</param>
+            <param name="RefCamCentertoTargetCenter">Camera Center 간 거리 XY mm (Ref Center 기준 우측 + , 상 +)</param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getMarktoFixPos(System.Int32,rs2DAlign.cs2DAlign.ptXY@)">
+            <summary>
+            Mark에서 Fix Position 간 거리 구하기
+            </summary>
+            <param name="iCalNO">적용할 Calibration NO</param>
+            <param name="dist"></param>
+        </member>
+        <member name="M:rs2DAlign.cs2DAlign.getFixPos(System.Int32,rs2DAlign.cs2DAlign.ptXYT@)">
+            <summary>
+            Fix Position 반환 함수
+            </summary>
+            <param name="iCalNo">적용할 Calibration NO</param>
+            <param name="fix"></param>
+        </member>
+    </members>
+</doc>

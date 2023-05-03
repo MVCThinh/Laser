@@ -1,0 +1,45 @@
+﻿scf panel은 reel cal할때 fix가 정해짐..
+scf inspection해서 자체적으로 apc기능 필요
+- 레시피에 offset적으면 그거 쓰는식으로 할것임
+사이드 양불판정 딥러닝적용
+캘결과 DIC처럼 표시하기
+이미지저장 쓰레드화(DIC참고)
+@Inspection cal두개
+카메라 한개던 두개던 2점캘로 통일화
+Inspection fpc부터 찍어서 emi에 값적으면 reply주기(별도)
+EMI,TEMP 캘할때 0도위치 마지막에 찍어서 그좌표 사용할 수 있도록 구성
+마크 찾기순서 또는 저장순서 유연하게..
+Reel, EMI 타겟등록 없으면 캘점(중앙)이 자동으로 타겟등록 되도록(안보이는 위치면 시프트 계산 필요)
+Lcheck기능 통일화..(SCFPanel이랑 Inspection은 좀 다름) 레시피항목 맵에추가
+@수동마크 정리(임시마크도 할수있으면)
+@동심도 offset 확인(감마에 있음) 도착 z축 높이 조절된다고함 시작점은 그대로 의미파악 필요
+조명,노출,컨트라스트 관리개선
+- pattern, line 종류별로 각각관리
+- 세팅 recipe화면에서 보면서 하도록함
+- RecaptureExposure 세팅화면에 만들어야함
+- 조명이 카메라 하나당 한개가 아니니까.. 애매하다.. 일단 조명은 고정하고 exposure로 조절하는 방향으로 진행
+Lcheckoffset을 타겟등록할때 자동으로.. 일단 panel이 1번 fpc가 2번으로 하자
+
+@메뉴얼마크창 vision개별로 관리하도록..
+@임시마크는 frmmanual로 옮기는게 좋은데 cogds변수로 안받으려면 vision에서 그냥 사용이 편리할듯
+
+reel만 recipe화면 카메라위치 바꾸기..
+Inspection 버튼 누를때 동작 
+
+Auto
+SCF,TEMP,EMI,벤딩프리 수석님
+로딩,벤딩,인스펙션 나
+
+@2ndMark 저장시 true false 이거 로드할때 문제없도록..
+
+
+emireel캘할때 inspection fpc target 미리하도록 하고 자동으로 Inspection쪽 fix값 계산(마크찾지말고 타겟으로 되도록..)
+SCFReel캘할때 scfpanel fix자동계산.. got에서 미리 값 넣어놓도록 하기
+둘다 수동으로도 할수있도록 기능은 냅두기
+LMI결과 initial reply알아서 정해주기..
+
+#scf inspection cpk계산, 줄맞추기
+#lcheck ng시 수동마크띄우기
+#벤딩 apc scf apc 화면표시
+#메뉴얼마크에 찾아야할마크 띄우기
+#scf픽업할때 3cam보고 y길이체크해서 로그남기기

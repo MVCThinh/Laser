@@ -1,0 +1,16 @@
+2017.08.07 - Panel ID Length 변경
+
+2017.08.15 - FFU Control 추가 (Test 필요함)
+
+2017.08.18 - 프로그램 단순화 (필요없는 화면 삭제 등)
+2017.08.19 - Accura 접속 PC1만 하도록
+
+2017.08.23 - FFU FDC Value 보고 완료
+             FFU 사용 방법
+             1. EQData -> INI -> MXIFConfig에서
+                FFUCOMPORT=COM5번호 변경 필요 (Moxa Port 4번째 연결 시)
+             2. EQData -> INI -> Address_word
+                FFU=9F50 추가 필요 (PLC CIM 중계 영역으로 송신)
+
+             
+             

@@ -1,0 +1,14 @@
+D:\Program Backup\Bending_20170518_SDC\Bending\bin\Debug\Bending.exe.config
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending_20170518.csprojResolveAssemblyReference.cache
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.frmIF.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.frmLogIn.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.frmManualMark.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.Menu.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.frmPattern.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.frmPositionPicker.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.frmVision.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.Properties.Resources.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.ucAutoMain.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.ucRecipe.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending.ucSetting.resources
+D:\Program Backup\Bending_20170518_SDC\Bending\obj\Debug\Bending_20170518.csproj.GenerateResource.Cache
